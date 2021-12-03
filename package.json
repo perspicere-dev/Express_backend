@@ -1,0 +1,10 @@
+{
+  "name": "Express_backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Przemysław Wnęk <wnek.przemek@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}
