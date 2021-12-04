@@ -23,6 +23,6 @@ app.use((req, res) => {
     res.status(404);
   })
 
-app.listen(7000, () => {
-  console.log('Server is running on port: 7000');
+app.listen(8000, () => {
+  console.log('Server is running on port: 8000');
 });

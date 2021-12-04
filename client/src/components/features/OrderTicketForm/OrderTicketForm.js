@@ -92,6 +92,7 @@ class OrderTicketForm extends React.Component {
             </FormGroup>
             <FormGroup check>
               <Label check>
+              {/* eslint-disable-next-line */}
                 <Input required type="checkbox" /> I agree with <a href="#">Terms and conditions</a> and <a href="#">Privacy Policy</a>.
               </Label>
             </FormGroup>
