@@ -6,7 +6,6 @@ const db = require('../db');
 
 router.route('/testimonials').get((req, res) => {
     res.json(db.testimonials);
-    console.log('db.test', db.testimonials)
   });
   
 router.route('/testimonials/random').get((req, res) => {
