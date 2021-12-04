@@ -25,9 +25,8 @@ app.get('/testimonials/random', (req, res) => {
 
 app.post('/testimonials', (req, res) => {
   const { author, text } = req.body;
-  res.json(db.push(  { id: uuidv4(), author: author, text: text }));
-//   res.json({ massage: 'OK'} );
-  console.log('dbbbbb', db);
+  db.push(  { id: uuidv4(), author: author, text: text });
+  res.json({ massage: 'OK'} );
   });
 
 app.put('/testimonials/:id', (req, res) => {
@@ -35,11 +34,12 @@ app.put('/testimonials/:id', (req, res) => {
     const objOfArray = db[req.params.id-1];
     objOfArray.author = author;
     objOfArray.text = text;
-    res.json(db);
+    res.json({ massage: 'OK'} );
 });
 
 app.delete('/testimonials/:id', (req, res) => {
-  res.json(db.splice(req.params.id-1, 1))
+  db.splice(req.params.id-1, 1);
+  res.json({ massage: 'OK'} );
 });
 
 app.get('/testimonials/:id', (req, res) => {
@@ -47,7 +47,8 @@ app.get('/testimonials/:id', (req, res) => {
 });
 
 app.use((req, res) => {
-    res.status(404).send('404 not found...');
+    res.json({ message: 'Not found...' });
+    res.status(404);
   })
 
 app.listen(7000, () => {
