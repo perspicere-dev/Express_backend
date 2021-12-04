@@ -15,12 +15,16 @@ router.route('/seats').post((req, res) => {
   });
   
 router.route('/seats/:id').put((req, res) => {
-  const { seat, client } = req.body;
+  const { newSeat, newClient } = req.body;
   const objOfArray = db.seats[req.params.id-1];
-  objOfArray.seat = seat;
-  objOfArray.client = client;
+  if(newSeat && newClient) { //simple validation
+    objOfArray.seat = newSeat;
+    objOfArray.client = newClient;
+  }
+  else {
+    res.send('You can\'t leave fields empty!')
+  }
   res.json({ massage: 'OK'} );
-  console.log('db.seats[req.params.id-1]', db.seats[req.params.id-1])
 });
 
 router.route('/seats/:id').delete((req, res) => {
