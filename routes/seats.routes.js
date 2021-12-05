@@ -9,9 +9,18 @@ router.route('/seats').get((req, res) => {
   });
   
 router.route('/seats').post((req, res) => {
-  const { seat, client } = req.body;
-  db.seats.push(  { id: uuidv4(), seat: seat, client: client });
-  res.json({ massage: 'OK'} );
+  const { seat, day, client, email } = req.body;
+
+  const reservationExists = db.seats.some(seatReservation => {
+    return seatReservation.seat == parseInt(seat) && seatReservation.day == parseInt(day)
+    });
+
+  console.log('reservationExists', reservationExists);
+
+  if(!reservationExists){
+    db.seats.push({ id: uuidv4(), day: day, seat: seat, client: client, email: email });
+    res.json({ massage: 'OK'} );
+    } else res.json({ massage: "The slot is already taken..."} );
   });
   
 router.route('/seats/:id').put((req, res) => {

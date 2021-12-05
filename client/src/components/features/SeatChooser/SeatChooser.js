@@ -10,13 +10,13 @@ class SeatChooser extends React.Component {
 
     loadSeats()
     this.setState({
-      refreshSeatsInterval: setInterval(()=>loadSeats(), 120)});
+      refreshSeatsInterval: setInterval(()=>loadSeats(), 12000)});
   }
   
   componentWillUnmount() { 
     // clearing the interval
-    if(this.state.refreshSeatsInterval) clearInterval(this.state.refreshSeatsInterval); 
-    // clearInterval(this.state.refreshSeatsInterval)
+    // if(this.state.refreshSeatsInterval) clearInterval(this.state.refreshSeatsInterval); czy moze być tak czy tak jak poniejzej
+    clearInterval(this.state.refreshSeatsInterval);
   }
 
   isTaken = (seatId) => {
