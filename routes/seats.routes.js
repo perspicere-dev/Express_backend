@@ -20,7 +20,7 @@ router.route('/seats').post((req, res) => {
   if(!reservationExists){
     db.seats.push({ id: uuidv4(), day: day, seat: seat, client: client, email: email });
     res.json({ massage: 'OK'} );
-    } else res.json({ massage: "The slot is already taken..."} );
+    } else res.status(400).send('The slot is already taken...');
   });
   
 router.route('/seats/:id').put((req, res) => {
