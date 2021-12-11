@@ -3,7 +3,6 @@ const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 const db = require('../db');
 
-
 router.route('/seats').get((req, res) => {
     res.json(db.seats);
   });
@@ -15,10 +14,10 @@ router.route('/seats').post((req, res) => {
     return seatReservation.seat == parseInt(seat) && seatReservation.day == parseInt(day)
     });
 
-  console.log('reservationExists', reservationExists);
-
   if(!reservationExists){
     db.seats.push({ id: uuidv4(), day: day, seat: seat, client: client, email: email });
+    req.io.emit('seatsUpdated', db.seats);
+    // console.log('seatsUpdated', db.seats );
     res.json({ massage: 'OK'} );
     } else res.status(400).send('The slot is already taken...');
   });
