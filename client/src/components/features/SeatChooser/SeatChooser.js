@@ -7,7 +7,7 @@ class SeatChooser extends React.Component {
   
   componentDidMount() {
     const { loadSeats } = this.props;
-    this.socket = io(process.env.PORT === 'production' ? '/' : 'localhost:8000'); //eśli jesteśmy w środowisku production, to niech Socket.IO automatycznie wybierze domyślny adres, w innej sytuacji wskaż jednak localhost:8000
+    this.socket = io(process.env.PORT === 'production' ? '/' : 'http://localhost:8000'); //eśli jesteśmy w środowisku production, to niech Socket.IO automatycznie wybierze domyślny adres, w innej sytuacji wskaż jednak localhost:8000
     
     loadSeats()
 
