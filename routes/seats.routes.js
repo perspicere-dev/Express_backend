@@ -30,7 +30,7 @@ router.route('/seats/:id').put((req, res) => {
     objOfArray.client = newClient;
   }
   else {
-    res.send('You can\'t leave fields empty!')
+    res.send('You can\'t leave fields empty!!!')
   }
   res.json({ massage: 'OK'} );
 });
