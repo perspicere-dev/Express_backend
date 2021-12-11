@@ -17,7 +17,7 @@ router.route('/seats').post((req, res) => {
   if(!reservationExists){
     db.seats.push({ id: uuidv4(), day: day, seat: seat, client: client, email: email });
     req.io.emit('seatsUpdated', db.seats);
-    // console.log('seatsUpdated', db.seats );
+    console.log('seatsUpdated', db.seats );
     res.json({ massage: 'OK'} );
     } else res.status(400).send('The slot is already taken...');
   });
