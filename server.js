@@ -1,9 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-const db = require('./db')
+// const db = require('./db')
 const app = express();
 const path = require('path');
 const socket = require('socket.io');
+const mongoose = require('mongoose');
 
 
 //import routes
@@ -21,6 +22,16 @@ app.use((req, res, next) => { // w SeatChooser Pojawia się tylko jeden problem.
   req.io = io;
   next();
 });
+
+// connects our backend code with the database
+mongoose.connect('mongodb://localhost:27017/NewWaveDB', { useNewUrlParser: true });
+const db = mongoose.connection;
+
+db.once('open', () => {
+  console.log('Connected to the database');
+});
+db.on('error', err => console.log('Error ' + err));
+
 
 //use routes
 app.use('/api', testimonials); 
