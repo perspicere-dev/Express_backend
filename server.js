@@ -24,7 +24,7 @@ app.use((req, res, next) => { // w SeatChooser Pojawia się tylko jeden problem.
 });
 
 // connects our backend code with the database
-mongoose.connect('mongodb://localhost:27017/NewWaveDB', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://china777:admin@learningmongodb.vgoj7.mongodb.net/newWave777?retryWrites=true&w=majority', { useNewUrlParser: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
