@@ -83,7 +83,6 @@ exports.getPerformer = async (req, res) => {
 }
 
 exports.getGenre = async (req, res) => {
-  console.log('dupa')
 
   try {
     const con = await Concert.find({genre: req.params.genre});
@@ -109,7 +108,7 @@ exports.getMinMaxPrice = async (req, res) => {
 };
 
 exports.getDay = async (req, res) => { 
-
+  console.log("starting getDay")
   try {
     const con = await Concert.find({ day: req.params.day });
     if (!con) res.status(404).json({ message: 'Not found' });
@@ -120,4 +119,4 @@ exports.getDay = async (req, res) => {
   }
 }
 
-// TODO - getDay - nie dziala. Pomimo tego ze działało wczesniej getMinMaxPrice tez jest w number i dziala "Cast to number failed for value \"day\" at path \"price\" for model \"Concert\"", 
+// TODO - getDay - nie dziala. Nie startuje getDay w ogóle. Pomimo tego ze działało wczesniej. getMinMaxPrice tez jest w number i dziala błąd: "Cast to number failed for value \"day\" at path \"price\" for model \"Concert\", WYRZUCIŁEM price z zdresu /concerts/price/day/:day i dałem /concerts/day/:day i działa. Dlaczego nie działa z price?

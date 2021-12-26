@@ -18,6 +18,6 @@ router.get('/concerts/genre/:genre', ConcertController.getGenre);
 
 router.get('/concerts/price/:min/:max', ConcertController.getMinMaxPrice);
 
-router.get('/concerts/price/day/:day', ConcertController.getDay);
+router.get('/concerts/day/:day', ConcertController.getDay);
 
 module.exports = router;

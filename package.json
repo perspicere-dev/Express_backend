@@ -2,28 +2,27 @@
   "name": "Express_backend",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": "git@github.com:perspicere-dev/Express_backend.git",
   "author": "Przemysław Wnęk <wnek.przemek@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^5.1.3",
+    "chai": "4.2.0",
+    "chai-http": "4.3.0",
     "cors": "^2.8.5",
     "express": "4.17.1",
+    "mocha": "6.2.1",
     "mongodb": "3.3.2",
     "mongoose": "5.7.1",
     "nodemon": "^2.0.15",
+    "onchange": "6.1.0",
     "socket.io": "2.2.0",
-    "uuid": "^8.3.2",
-    "chai": "4.2.0"
-    
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "nodemon server.js",
     "build": "cd client && yarn install && yarn build",
     "test": "NODE_ENV=test mocha \"./{,!(node_modules|client)/**/}*.test.js\"",
     "test:watch": "onchange \"./**/*.js\" -i -k -- yarn test"
-
-  },
-  "devDependencies": {
-    "eslint": "^8.5.0"
   }
 }

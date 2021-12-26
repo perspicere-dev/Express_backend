@@ -23,14 +23,22 @@ app.use((req, res, next) => { // w SeatChooser Pojawia się tylko jeden problem.
   next();
 });
 
-// connects our backend code with the database
-mongoose.connect('mongodb+srv://china777:admin@learningmongodb.vgoj7.mongodb.net/newWave777?retryWrites=true&w=majority', { useNewUrlParser: true });
+// connects our backend code with the database 
+const NODE_ENV = process.env.NODE_ENV;
+let dbUri = '';
+
+if (NODE_ENV === 'production') dbUri = 'mongodb+srv://china777:admin@learningmongodb.vgoj7.mongodb.net/newWave777?retryWrites=true&w=majority';
+else if (NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/newWaveDBtest';
+else dbUri = 'mongodb://localhost:27017/newWaveDB';
+
+mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
   console.log('Connected to the database');
+  console.log('process.env.NODE_ENV', process.env.NODE_ENV )
 });
-db.on('error', err => console.log('Error ' + err));
+db.on('error', err => console.log('Error ' + err))
 
 
 //use routes
@@ -61,4 +69,6 @@ io.on('connection', (socket) => {
     console.log('seats from endp', seats);
   });
 })
+
+module.exports = server;
   
