@@ -25,9 +25,10 @@ app.use((req, res, next) => { // w SeatChooser Pojawia się tylko jeden problem.
 
 // connects our backend code with the database 
 const NODE_ENV = process.env.NODE_ENV;
+const dbPass = process.env.dbPass;
 let dbUri = '';
 
-if (NODE_ENV === 'production') dbUri = 'mongodb+srv://china777:admin@learningmongodb.vgoj7.mongodb.net/newWave777?retryWrites=true&w=majority';
+if (NODE_ENV === 'production') dbUri = `mongodb+srv://china777:${dbPass}@learningmongodb.vgoj7.mongodb.net/newWave777?retryWrites=true&w=majority`;
 else if (NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/newWaveDBtest';
 else dbUri = 'mongodb://localhost:27017/newWaveDB';
 
