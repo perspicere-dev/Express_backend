@@ -77,6 +77,4 @@ describe('GET /api/concerts', () => {
     expect(res.body.length).not.to.be.null;
     expect(res.body.length).to.be.equal(2);
   });   
-
-
 });
