@@ -105,6 +105,7 @@ exports.getGenre = async (req, res) => {
 exports.getMinMaxPrice = async (req, res) => {
   const min = req.params.min
   const max = req.params.max
+  console.log(req.params);
   try {
     const con = await Concert.find({ $and: [{ price: { $gte: min } }, { price: { $lte: max } }] });
     if (!con) res.status(404).json({ message: 'Not found' });

@@ -1,18 +1,16 @@
+require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
-// const db = require('./db')
 const app = express();
 const path = require('path');
 const socket = require('socket.io');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 
-
 //import routes
 const testimonials = require('./routes/testimonials.routes');
 const concerts = require('./routes/concerts.routes');
 const seats = require('./routes/seats.routes');
-
   
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -27,7 +25,7 @@ app.use((req, res, next) => { // w SeatChooser Pojawia się tylko jeden problem.
 
 // connects our backend code with the database 
 const NODE_ENV = process.env.NODE_ENV;
-const dbPass = process.env.dbPass;
+const dbPass = process.env.DB_PASS;
 let dbUri = '';
 
 if (NODE_ENV === 'production') dbUri = `mongodb+srv://china777:${dbPass}@learningmongodb.vgoj7.mongodb.net/newWave777?retryWrites=true&w=majority`;
@@ -43,17 +41,14 @@ db.once('open', () => {
 });
 db.on('error', err => console.log('Error ' + err))
 
-
 //use routes
 app.use('/api', testimonials); 
 app.use('/api', concerts); 
 app.use('/api', seats);
 
-
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
-
 
 app.use((req, res) => {
   res.json({ message: 'Not found...' });
@@ -74,4 +69,10 @@ io.on('connection', (socket) => {
 })
 
 module.exports = server;
+
+//it was like:
+//in terminal ex.: export NODE_ENV=production
+//in terminal ex.: export dbPass=admin
+//check process.env: node --print 'process.env'
+//but after require('dotenv').config() it is simpler, check file .env
   
